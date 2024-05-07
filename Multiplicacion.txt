@@ -7,8 +7,8 @@ main:
 		ldr R11, c	;Salida de la función mult
 		bl mult		;Salto con enlace a la función mult
 		b fin		;Salto incondicional a la etiqueta fin
-a:		.word -14	;Variable con valor igual a -100
-b:		.word -10	;Variable con valor igual a 30
+a:		.word -14	;Variable con valor igual a -14
+b:		.word -10	;Variable con valor igual a -10
 c:		.word 0		;Variable con valor igual a 0
 mult:
 		cmp R10, #0	;Si el valor del Registro 10...
