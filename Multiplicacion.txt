@@ -1,0 +1,31 @@
+		.text
+ 		.thumb
+ 		.global main
+main:
+		ldr R9, a	;Operando 1 de la función mult
+	    	ldr R10, b	;Operando 2 de la función mult
+		ldr R11, c	;Salida de la función mult
+		bl mult		;Salto con enlace a la función mult
+		b fin		;Salto incondicional a la etiqueta fin
+a:		.word -14	;Variable con valor igual a -100
+b:		.word -10	;Variable con valor igual a 30
+c:		.word 0		;Variable con valor igual a 0
+mult:
+		cmp R10, #0	;Si el valor del Registro 10...
+		bgt $1		;Es mayor a cero, entonces ejecuta $1
+		cmp R10, #0	;Si el valor del Registro 10...
+		blt $2		;Es menor a cero, entonces ejecuta $2
+		mov PC, LR	;Es igual a cero, entonces regresa
+$1:
+		add  R11, R9
+		subs R10, #1
+		bne  $1
+		mov PC, LR
+$2:
+		sub  R11, R9
+		adds R10, #1
+		bne  $2
+		mov PC, LR
+fin:
+		b fin		;Ciclo Infinito
+		.end
