@@ -1,6 +1,7 @@
 		.text
  		.thumb
  		.global main
+
 main:
 		ldr R9, a	;Operando 1 de la función mult
 	    	ldr R10, b	;Operando 2 de la función mult
@@ -10,22 +11,27 @@ main:
 a:		.word -14	;Variable con valor igual a -14
 b:		.word -10	;Variable con valor igual a -10
 c:		.word 0		;Variable con valor igual a 0
+
 mult:
+		cmp R9, #0	;Si el valor del Registro 9...
+		beq $3		;Es igual cero, entonces regresa
 		cmp R10, #0	;Si el valor del Registro 10...
 		bgt $1		;Es mayor a cero, entonces ejecuta $1
-		cmp R10, #0	;Si el valor del Registro 10...
 		blt $2		;Es menor a cero, entonces ejecuta $2
-		mov PC, LR	;Es igual a cero, entonces regresa
+		beq $3		;Es igual a cero, entonces regresa
 $1:
 		add  R11, R9
 		subs R10, #1
 		bne  $1
-		mov PC, LR
+		b $3
 $2:
 		sub  R11, R9
 		adds R10, #1
 		bne  $2
+		b $3
+$3:
 		mov PC, LR
+
 fin:
 		b fin		;Ciclo infinito
 		.end
