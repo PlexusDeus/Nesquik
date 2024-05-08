@@ -1,0 +1,21 @@
+		.text
+ 		.thumb
+ 		.global main
+main:
+	    	ldr R8, n	;Entrada de la función fact
+	    	cmp R8, #0	;Verifica que la entrada no sea menor que cero
+	    	blt fin
+	    	cmp R8, #12	;Verifica que la entrada no sea mayor que doce
+	    	bgt fin
+		ldr R12, m	;Salida de la función fact
+		bl fact		;Salto con enlace a la función fact
+		b fin		;Salto incondicional a la etiqueta fin
+n:		.word 7 	;Variable con valor igual a 2
+m:		.word 1		;Variable con valor igual a 0
+fact:
+		mul R12, R8
+		subs R8, #1
+		bne fact
+fin:
+		b fin		;Ciclo infinito
+		.end
