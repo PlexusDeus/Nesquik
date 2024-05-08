@@ -1,0 +1,58 @@
+		.text
+ 		.thumb
+ 		.global main
+
+mult	.macro P, M1, M2
+		cmp M1, #0
+		beq f?
+		cmp M2, #0
+		bgt c1?
+		blt c2?
+		beq f?
+c1?
+		add P, M1
+		subs M2, #1
+		bne c1?
+		b f?
+c2?
+		sub P, M1
+		adds M2, #1
+		bne c2?
+		b f?
+f?
+		.endm
+
+main:
+		bl fact		;Salto con enlace a la función fact
+		b fin		;Salto incondicional a la etiqueta fin
+
+fact:
+		ldr R8, n	;Entrada de la función fact
+		cmp R8, #0	;Si el valor del Registro 8...
+		blt $2		;Es menor a cero, entonces ejecuta $2
+		ldr R12, m	;Salida de la función fact
+		cmp R8, #0	;Si el valor del Registro 8...
+		beq $3		;Es igual a cero, ejecuta $3
+		bgt $1    	;Es mayor a cero, ejecuta $1
+$1:
+		mov R7, R8
+		mult R11, R12, R7
+		mov R12, R11
+		mov R11, #0
+		subs R8, #1
+		bne $1
+		b $3
+$2:
+		ldr R12, c	;Salida de la función fact
+		b $3
+$3:
+		mov PC, LR
+
+n:		.word 8 	;Variable con valor igual a 8
+m:		.word 1		;Constante con valor igual a 1
+c:		.word 0		;Constante con valor igual a 0
+
+fin:
+		b fin		;Ciclo Infinito
+		.end
+
