@@ -3,16 +3,13 @@
  		.global main
 
 main:
+		bl mult		;Salto con enlace a la función mult
+		b fin		;Salto incondicional a la etiqueta fin
+
+mult:
 		ldr R9, a	;Operando 1 de la función mult
 		ldr R10, b	;Operando 2 de la función mult
 		ldr R11, c	;Salida de la función mult
-		bl mult		;Salto con enlace a la función mult
-		b fin		;Salto incondicional a la etiqueta fin
-a:		.word -14	;Variable con valor igual a -14
-b:		.word -10	;Variable con valor igual a -10
-c:		.word 0		;Variable con valor igual a 0
-
-mult:
 		cmp R9, #0	;Si el valor del Registro 9...
 		beq $3		;Es igual cero, entonces regresa
 		cmp R10, #0	;Si el valor del Registro 10...
@@ -31,6 +28,10 @@ $2:
 		b $3
 $3:
 		mov PC, LR
+
+a:		.word -1410	;Variable con valor igual a -1410
+b:		.word -2000	;Variable con valor igual a -2000
+c:		.word 0		;Variable con valor igual a 0
 
 fin:
 		b fin		;Ciclo infinito
