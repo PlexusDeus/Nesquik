@@ -5,6 +5,7 @@
 main:
 		bl fact		;Salto con enlace a la función fact
 		b fin		;Salto incondicional a la etiqueta fin
+
 fact:
 		ldr R8, n	;Entrada de la función fact
 		cmp R8, #0	;Si el valor del Registro 8...
@@ -29,5 +30,7 @@ m:		.word 1		;Constante con valor igual a 1
 c:		.word 0 	;Constante con valor igual a 0
 
 fin:
+		b fin		;Ciclo infinito
+		.end
 		b fin		;Ciclo infinito
 		.end
