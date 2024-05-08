@@ -27,5 +27,5 @@ $2:
 		bne  $2
 		mov PC, LR
 fin:
-		b fin		;Ciclo Infinito
+		b fin		;Ciclo infinito
 		.end
