@@ -32,5 +32,3 @@ c:		.word 0 	;Constante con valor igual a 0
 fin:
 		b fin		;Ciclo infinito
 		.end
-		b fin		;Ciclo infinito
-		.end
