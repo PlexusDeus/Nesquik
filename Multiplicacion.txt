@@ -4,7 +4,7 @@
 
 main:
 		ldr R9, a	;Operando 1 de la función mult
-	    	ldr R10, b	;Operando 2 de la función mult
+		ldr R10, b	;Operando 2 de la función mult
 		ldr R11, c	;Salida de la función mult
 		bl mult		;Salto con enlace a la función mult
 		b fin		;Salto incondicional a la etiqueta fin
